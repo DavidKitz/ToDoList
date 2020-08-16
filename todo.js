@@ -119,8 +119,8 @@ function initTodos() {
         let nameLocal=listLocal.name;
         let completo=listLocal.completed;
         let list_new=new Todo(nameLocal,completo);
-        archive[i]=list_new;
-        loadTodos(nameLocal,completo,i);      
+        archive[key]=list_new;
+        loadTodos(nameLocal,completo,key);      
       } 
   } 
 };
@@ -139,8 +139,8 @@ function checktheBox () {
    let key=Object.keys(localStorage)[i];
    let data= localStorage.getItem(key);
     if (data) {
-      if(archive[i].completed) {
-        let liElement= document.getElementById(i);
+      if(archive[key].completed) {
+        let liElement= document.getElementById(key);
           if (liElement.querySelector("input") == null) {
             let checker=document.createElement("input");
             checker.setAttribute("type","checkbox");
