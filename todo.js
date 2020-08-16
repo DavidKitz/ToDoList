@@ -111,8 +111,9 @@ function removeLogic() {
 };
     
 function initTodos() {
-  for (let i=0;i<=localStorage.length+10;i++){
-   let data= localStorage.getItem(i);
+  for (let i=0;i<=localStorage.length;i++){
+   let key=Object.keys(localStorage)[i];
+   let data= localStorage.getItem(key);
       if (data) {
         let listLocal=JSON.parse(data);
         let nameLocal=listLocal.name;
