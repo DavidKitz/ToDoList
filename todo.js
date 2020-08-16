@@ -135,8 +135,9 @@ function loadTodos (item,completo,k) {
 };
 
 function checktheBox () {
-  for (let i=0;i<=localStorage.length+10;i++) {
-   let data= localStorage.getItem(i);
+  for (let i=0;i<=localStorage.length;i++) {
+   let key=Object.keys(localStorage)[i];
+   let data= localStorage.getItem(key);
     if (data) {
       if(archive[i].completed) {
         let liElement= document.getElementById(i);
