@@ -1,7 +1,4 @@
 
-/*Buglist
-1) initTodos needs to finish before the checkthebox funtion begins to run
-*/
 const spanButton= document.getElementById("add");
 const ul = document.getElementById("listUl");
 const txtinput= document.getElementById("txtinp");
@@ -147,8 +144,7 @@ function checktheBox () {
         }
    liElement.querySelector("input").checked=true;
   }
-   }
-   
+  }   
  } 
 };
 
