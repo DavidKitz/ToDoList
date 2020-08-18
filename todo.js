@@ -141,10 +141,10 @@ function checktheBox () {
           if (liElement.querySelector("input") == null) {
             let checker=document.createElement("input");
             checker.setAttribute("type","checkbox");
-        }
-   liElement.querySelector("input").checked=true;
-  }
-  }   
+            }
+         liElement.querySelector("input").checked=true;
+          }
+         }   
  } 
 };
 
