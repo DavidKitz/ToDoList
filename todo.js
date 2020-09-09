@@ -108,16 +108,19 @@ function removeLogic() {
 };
     
 function initTodos() {
+  let key=Object.keys(localStorage);
+  key.sort((a,b)=> {return a-b;}); 
   for (let i=0;i<=localStorage.length;i++){
-   let key=Object.keys(localStorage)[i];
-   let data= localStorage.getItem(key);
+   
+   let key1=key[i]
+   let data= localStorage.getItem(key1);
       if (data) {
         let listLocal=JSON.parse(data);
         let nameLocal=listLocal.name;
         let completo=listLocal.completed;
         let list_new=new Todo(nameLocal,completo);
-        archive[key]=list_new;
-        loadTodos(nameLocal,completo,key);      
+        archive[key1]=list_new;
+        loadTodos(nameLocal,completo,key1);      
       } 
   } 
 };
@@ -132,19 +135,22 @@ function loadTodos (item,completo,k) {
 };
 
 function checktheBox () {
-  for (let i=0;i<=localStorage.length;i++) {
-   let key=Object.keys(localStorage)[i];
-   let data= localStorage.getItem(key);
+  let key=Object.keys(localStorage);
+  key.sort((a,b)=> {return a-b;}); 
+  for (let i=0;i<=localStorage.length;i++){
+   
+   let key1=key[i]
+   let data= localStorage.getItem(key1);
     if (data) {
-      if(archive[key].completed) {
-        let liElement= document.getElementById(key);
+      if(archive[key1].completed) {
+        let liElement= document.getElementById(key1);
           if (liElement.querySelector("input") == null) {
             let checker=document.createElement("input");
             checker.setAttribute("type","checkbox");
-            }
-         liElement.querySelector("input").checked=true;
-          }
-         }   
+        }
+       liElement.querySelector("input").checked=true;
+      }
+    } 
  } 
 };
 
