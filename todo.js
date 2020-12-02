@@ -1,14 +1,21 @@
 
+<<<<<<< HEAD
 /*Buglist
 1) initTodos needs to finish before the checkthebox funtion begins to run
 */
+=======
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
 const spanButton= document.getElementById("add");
 const ul = document.getElementById("listUl");
 const txtinput= document.getElementById("txtinp");
 const list= document.getElementsByTagName("li");
 const clearAll=document.getElementById("clearAll");
 let archive = [];
+<<<<<<< HEAD
 let count = 0;
+=======
+let count=0;
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
 initTodos();
 window.onload= checktheBox();
 txtinput.onkeypress=handleKeyPress;
@@ -40,7 +47,11 @@ window.onload= spanButton.addEventListener("click", function () {
         alert("Please enter a valid input");
     }   
     else { 
+<<<<<<< HEAD
        count++; 
+=======
+       count++;
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
        let newTodo=new Todo(txtvalue);
        archive[count]=newTodo;
        let todo=archive[count];
@@ -48,8 +59,12 @@ window.onload= spanButton.addEventListener("click", function () {
        lister(count);
        checkboxCreater(todo.completed);
        clearInput();
+<<<<<<< HEAD
        saveTodos(); 
         
+=======
+       saveTodos();  
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
     }
 });
 function clearInput() {
@@ -57,6 +72,10 @@ function clearInput() {
 };
 
 function lister (num) {
+<<<<<<< HEAD
+=======
+  console.log(num);
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
   let span=document.createElement("Span");
   let txt=document.createTextNode("\u00D7");
   span.className="close";
@@ -139,6 +158,7 @@ function loadTodos (item,completo,k) {
 
 function checktheBox () {
   let key=Object.keys(localStorage);
+<<<<<<< HEAD
   console.log(key)
   for (keys in key) {
     if (isNaN(keys))
@@ -146,6 +166,8 @@ function checktheBox () {
         key.splice(keys, 1);
     }
   }
+=======
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
   key.sort((a,b)=> {return a-b;}); 
   for (let i=0;i<=localStorage.length;i++){
    
@@ -172,4 +194,8 @@ function saveTodos() {
  
 
 
+<<<<<<< HEAD
  
+=======
+ 
+>>>>>>> 66728456674e26b71b949207fbcb32e00bce428c
