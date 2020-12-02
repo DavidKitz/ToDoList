@@ -8,7 +8,7 @@ const txtinput= document.getElementById("txtinp");
 const list= document.getElementsByTagName("li");
 const clearAll=document.getElementById("clearAll");
 let archive = [];
-let count=0;
+let count = 0;
 initTodos();
 window.onload= checktheBox();
 txtinput.onkeypress=handleKeyPress;
@@ -57,7 +57,6 @@ function clearInput() {
 };
 
 function lister (num) {
-  console.log(num);
   let span=document.createElement("Span");
   let txt=document.createTextNode("\u00D7");
   span.className="close";
@@ -140,6 +139,13 @@ function loadTodos (item,completo,k) {
 
 function checktheBox () {
   let key=Object.keys(localStorage);
+  console.log(key)
+  for (keys in key) {
+    if (isNaN(keys))
+    {
+        key.splice(keys, 1);
+    }
+  }
   key.sort((a,b)=> {return a-b;}); 
   for (let i=0;i<=localStorage.length;i++){
    
