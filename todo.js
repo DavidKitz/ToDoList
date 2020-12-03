@@ -9,7 +9,7 @@ let count=0;
 initTodos();
 window.onload= checktheBox();
 txtinput.onkeypress=handleKeyPress;
-
+localStorage.setItem("highscore",5)
 function Todo(name,completo) {
   this.name=name;
     if (completo) {
@@ -108,6 +108,15 @@ function removeLogic() {
     
 function initTodos() {
   let key=Object.keys(localStorage);
+  for (keys in key) {
+    //since only numbers are stored, if something else should be in local stroage it will be detected here
+    if (isNaN(Number(key[keys])))
+    {
+        let index = key.indexOf(key[keys])
+        key.splice(index, 1);
+        
+    }
+  }
   key.sort((a,b)=> {return a-b;}); 
   for (let i=0;i<=localStorage.length;i++){
    
@@ -135,15 +144,16 @@ function loadTodos (item,completo,k) {
 
 function checktheBox () {
   let key=Object.keys(localStorage);
-  console.log(key)
   for (keys in key) {
     //since only numbers are stored, if something else should be in local stroage it will be detected here
-    if (isNaN(Number(keys)))
+    if (isNaN(Number(key[keys])))
     {
-        let index = key.indexOf(keys)
+        let index = key.indexOf(key[keys])
         key.splice(index, 1);
+        
     }
   }
+  console.log(key)
   key.sort((a,b)=> {return a-b;}); 
   for (let i=0;i<=localStorage.length;i++){ 
    let key1=key[i]
