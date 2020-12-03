@@ -137,14 +137,14 @@ function checktheBox () {
   let key=Object.keys(localStorage);
   console.log(key)
   for (keys in key) {
-    if (isNaN(keys))
+    //since only numbers are stored, if something else should be in local stroage it will be detected here
+    if (isNaN(Number(keys)))
     {
         key.splice(keys, 1);
     }
   }
   key.sort((a,b)=> {return a-b;}); 
-  for (let i=0;i<=localStorage.length;i++){
-   
+  for (let i=0;i<=localStorage.length;i++){ 
    let key1=key[i]
    let data= localStorage.getItem(key1);
     if (data) {
