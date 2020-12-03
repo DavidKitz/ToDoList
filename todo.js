@@ -140,7 +140,8 @@ function checktheBox () {
     //since only numbers are stored, if something else should be in local stroage it will be detected here
     if (isNaN(Number(keys)))
     {
-        key.splice(keys, 1);
+        let index = key.indexOf(keys)
+        key.splice(index, 1);
     }
   }
   key.sort((a,b)=> {return a-b;}); 
