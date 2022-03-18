@@ -31,7 +31,7 @@ window.onload=clearAll.addEventListener("click", function(){
   window.location.reload()
   
   });
-window.onload= spanButton.addEventListener("click", function () {
+spanButton.addEventListener("click", function () {
   let txtvalue=txtinput.value;
     if (txtvalue=== "") {
         alert("Please enter a valid input");
@@ -41,7 +41,15 @@ window.onload= spanButton.addEventListener("click", function () {
        let newTodo=new Todo(txtvalue);
        archive[count]=newTodo;
        let todo=archive[count];
-       ul.innerHTML+="<li ><span contenteditable=\"true\">"+ todo.name + "</span></li>";
+       let spanInfo = document.createElement("span");
+       spanInfo.innerText = todo.name;
+       let li = document.createElement("li");
+       li.append(spanInfo);
+       ul.append(li);
+       spanInfo.setAttribute("contenteditable",true);
+       spanInfo.addEventListener("input",function() {
+           updateTodos(this);
+       })
        lister(count);
        checkboxCreater(todo.completed);
        clearInput();
@@ -51,6 +59,14 @@ window.onload= spanButton.addEventListener("click", function () {
 function clearInput() {
   txtinput.value= "";
 };
+
+function updateTodos(liElement) {
+    let update = JSON.parse(localStorage.getItem(liElement.parentNode.id));
+    update.name = liElement.innerText;
+    update = JSON.stringify(update);
+
+    localStorage.setItem(liElement.parentNode.id,update);
+}
 
 function lister (num) {
   let span=document.createElement("Span");
@@ -74,21 +90,21 @@ function checkboxCreater(completed) {
  };
 function checkif() {
   for (let i=0;i<list.length;i++) {
-      list[i].addEventListener("click",function(event) {
-       const element= event.target;
-        if(element.parentNode && element.parentNode!==ul) {
-          let completo=archive[element.parentNode.id].completed;
-            if (completo==false) {                    
-              archive[element.parentNode.id].completed=true; 
-              let str=JSON.stringify(archive[element.parentNode.id]);
-              localStorage[element.parentNode.id]=str;
-            }
-              else  { 
-                archive[element.parentNode.id].completed=false;
-                let str=JSON.stringify(archive[element.parentNode.id]);
-                localStorage[element.parentNode.id]=str;
+      list[i].childNodes[1].addEventListener("click",function(event) {
+          const element= event.target;
+          if(element.parentNode && element.parentNode!==ul) {
+              let completo=archive[element.parentNode.id].completed;
+              if (completo==false) {
+                  archive[element.parentNode.id].completed=true;
+                  let str=JSON.stringify(archive[element.parentNode.id]);
+                  localStorage[element.parentNode.id]=str;
               }
-      }});
+              else  {
+                  archive[element.parentNode.id].completed=false;
+                  let str=JSON.stringify(archive[element.parentNode.id]);
+                  localStorage[element.parentNode.id]=str;
+              }
+          }});
   }
 };
      
@@ -135,7 +151,15 @@ function initTodos() {
 
 function loadTodos (item,completo,k) {
     count=k;
-    ul.innerHTML+="<li>"+item + "</li>";
+    let spanInfo = document.createElement("span");
+    spanInfo.innerText = item;
+    let li = document.createElement("li");
+    li.append(spanInfo);
+    ul.append(li);
+    spanInfo.setAttribute("contenteditable",true);
+    spanInfo.addEventListener("input",function() {
+        updateTodos(this);
+    })
     console.log(completo,k);
     checkboxCreater(completo,k);
     lister(k);
@@ -153,7 +177,6 @@ function checktheBox () {
         
     }
   }
-  console.log(key)
   key.sort((a,b)=> {return a-b;}); 
   for (let i=0;i<=localStorage.length;i++){ 
    let key1=key[i]
