@@ -41,7 +41,7 @@ window.onload= spanButton.addEventListener("click", function () {
        let newTodo=new Todo(txtvalue);
        archive[count]=newTodo;
        let todo=archive[count];
-       ul.innerHTML+="<li>"+ todo.name + "</li>";
+       ul.innerHTML+="<li ><span contenteditable=\"true\">"+ todo.name + "</span></li>";
        lister(count);
        checkboxCreater(todo.completed);
        clearInput();
